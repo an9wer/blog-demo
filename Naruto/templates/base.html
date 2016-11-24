@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset='UTF-8'>
+	<title>an9wer's blog</title>
+	<link rel='stylesheet' type='text/css' href='static/css/base.css'>
+	</head>
+
+	<body>
+		<!-- Navigation -->
+		<div class='header-wrap'>
+			<div class='header center-container'>
+				<a href='/' class='logo'>an9wer</a>
+				<div class='links'>
+					<a href='/archive'>archive</a>
+					<a href='/about'>about</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- content -->
+		<div class='content-wrap'>
+			<div class='content center-container'>
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+
+		<!-- footer -->
+		<div class='footer-wrap'>
+			<div class='main-center footer'>
+				<p>
+					Powered by 
+					<a href='http://flask.pocoo.org'>Flask</a>
+				</p>
+			<div>
+		</div>

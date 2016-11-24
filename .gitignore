@@ -1,0 +1,8 @@
+*.py[cod]
+
+#Packages
+__pycache__
+instance
+
+#Virtual environment
+venv
