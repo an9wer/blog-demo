@@ -3,6 +3,7 @@
 #Packages
 __pycache__
 instance
+migrations
 
 #Virtual environment
 venv
