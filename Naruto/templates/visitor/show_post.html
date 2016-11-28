@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class='post normal-post'>
+		<!-- post title -->
+		<h1 class='title'>{{ post.title }}</h1>
+		<!-- post publish time -->
+		<span class='date'>{{ post.publish_time }}</span>
+		<!-- post body -->
+		<div class='post-body'>
+			{{ post.body }}
+			<p class='eof'>· EOF ·</p>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- post index -->
+{% for post in posts %}
+	<div class='post link-title-post'>
+		<h2 class='title'>
+			<a href="{{ url_for('visitor.show_post', post_id=post.id) }}">{{ post.title }}</a>
+		</h2>
+		<span class='date'>{{ post.publish_time }}</span>
+		<div class='post-body abstract-content'>{{ post.body[:200] }}[...]<div>
+	</div>
+{% endfor %}
+<!-- pagination -->
+<div class='pager'>
+	{% if pagination.page == 1 -%}
+		<span>&laquo;Previous</span>
+	{%- else -%}
+		<a href="{{ url_for('visitor.index', page=page-1) }}">&laquo;Previous</a>
+	{%- endif %}
+	<em>-{{ pagination.page }}-</em>
+	{% if pagination.page == pagination.pages -%}
+		<span>Next&raquo;</span>
+	{%- else -%}
+		<a href="{{ url_for('visitor.index', page=page+1) }}">Next&raquo;</a>
+	{%- endif %}
+</div>
+
+{% endblock %}
