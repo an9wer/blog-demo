@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+	<!-- post -->
 	<div class='post normal-post'>
 		<!-- post title -->
 		<h1 class='title'>{{ post.title }}</h1>
@@ -11,5 +12,39 @@
 			{{ post.body }}
 			<p class='eof'>· EOF ·</p>
 		</div>
+	</div>
+	<!-- comment form -->
+	<div>
+		<form method='post'>
+			{{ form.name.label }}<br>
+			{{ form.name() }}
+				{% if form.name.errors %}*{{ form.name.errors[0] }}{% endif %}<br>
+			{{ form.email.label }}<br>
+			{{ form.email() }}
+				{% if form.email.errors %}*{{ form.email.errors[0] }}{% endif %}<br>
+			{{ form.url.label }}<br>
+			{{ form.url() }}
+				{% if form.url.errors %}*{{ form.url.errors[0] }}{% endif %}<br>
+			{{ form.body.label }}<br>
+			{{ form.body() }}
+				{% if form.body.errors %}*{{ form.body.errors[0] }}{% endif %}<br>
+			{{ form.submit(value='Submit') }}
+		</form>
+	</div>
+	<!-- comments list -->
+	<div>
+		{% set comment_tag = 1 %}
+		{% for comment in comments %}
+			<div>
+				<div>
+					{{ comment.visitor.name }} · #{{ comment_tag }} · {{ comment.timestamp }}
+				</div>
+				<div>
+					{{ comment.body }}
+				</div>
+			<div>
+			<hr>
+		{% set comment_tag = comment_tag + 1 %}
+		{% endfor %}
 	</div>
 {% endblock %}

@@ -1,6 +1,7 @@
 from . import visitor
 from flask import request, render_template
-from ..models import Post
+from ..models import Post, Comment
+from .forms import CommentForm
 
 @visitor.route('/')
 def index():
@@ -13,8 +14,18 @@ def index():
 						   pagination=pagination,
 						   posts=posts)
 
-@visitor.route('/post/<int:post_id>')
+@visitor.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def show_post(post_id):
+	form = CommentForm()
+	if form.validate_on_submit():
+		visitor = Visitor(name=form.name.data, email=form.email.data, url=form.url.data)
+		comment = Comment(body=form.body.data)
+		db.session.add_all([visitor, comment])
+		db.session.commit()
+		return 'success'
 	post = Post.query.filter_by(id=post_id).first()
+	comments = Comment.query.filter_by(post_id=post.id).order_by(Comment.timestamp.asc()).all()
 	return render_template('visitor/show_post.html',
-						   post=post)
+						   form=form,
+						   post=post,
+						   comments=comments)

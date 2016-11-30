@@ -1,6 +1,7 @@
 class Default:
 	'''basic'''
 	SECRET_KEY = 'your own secret key'
+#	WTF_CSRF_ENABLED = False
 
 class Production(Default):
 	'''SQLAlchemy'''
