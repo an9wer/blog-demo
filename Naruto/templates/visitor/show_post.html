@@ -17,34 +17,38 @@
 	<div>
 		<form method='post'>
 			{{ form.name.label }}<br>
-			{{ form.name() }}
-				{% if form.name.errors %}*{{ form.name.errors[0] }}{% endif %}<br>
+			{{ form.name(onblur='validate_input(this.name); return false;') }}
+				<span id='name_error'></span><br>
 			{{ form.email.label }}<br>
-			{{ form.email() }}
-				{% if form.email.errors %}*{{ form.email.errors[0] }}{% endif %}<br>
+			{{ form.email(onblur='validate_input(this.name); return false;') }}
+				<span id='email_error'></span><br>
 			{{ form.url.label }}<br>
-			{{ form.url() }}
-				{% if form.url.errors %}*{{ form.url.errors[0] }}{% endif %}<br>
+			{{ form.url(onblur='validate_input(this.name); return false;') }}
+				<span id='url_error'></span><br>
 			{{ form.body.label }}<br>
-			{{ form.body() }}
-				{% if form.body.errors %}*{{ form.body.errors[0] }}{% endif %}<br>
-			{{ form.submit(value='Submit') }}
+			{{ form.body(onblur='validate_input(this.name); return false;') }}
+				<span id='body_error'></span><br>
+			{{ form.submit(value='Submit', onclick='submit_comment(); return false;') }}
 		</form>
 	</div>
 	<!-- comments list -->
-	<div>
+	<div class='comment-wraper' id='comment-list'>
 		{% set comment_tag = 1 %}
 		{% for comment in comments %}
-			<div>
-				<div>
-					{{ comment.visitor.name }} · #{{ comment_tag }} · {{ comment.timestamp }}
+			<div id='comment-{{ comment.id }}'>
+				<div class='comment-header'>
+					{{ comment.visitor.name }}
+					 · #{{ comment_tag }} · 
+					{{ comment.timestamp }}
 				</div>
-				<div>
+				<div class='comment-body'>
 					{{ comment.body }}
 				</div>
-			<div>
+			</div>
 			<hr>
 		{% set comment_tag = comment_tag + 1 %}
 		{% endfor %}
 	</div>
+	<script type='text/javascript' src='/static/js/validate_input.js'></script>
+	<script type='text/javascript' src='/static/js/submit_comment.js'></script>
 {% endblock %}
