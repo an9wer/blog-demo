@@ -32,7 +32,7 @@
 		</form>
 	</div>
 	<!-- comments list -->
-	<div class='comment-wraper' id='comment-list'>
+	<div class='comment-wrapper' id='comment-wrapper'>
 		{% set comment_tag = 1 %}
 		{% for comment in comments %}
 			<div id='comment-{{ comment.id }}'>
@@ -45,10 +45,9 @@
 					{{ comment.body }}
 				</div>
 			</div>
-			<hr>
 		{% set comment_tag = comment_tag + 1 %}
 		{% endfor %}
 	</div>
-	<script type='text/javascript' src='/static/js/validate_input.js'></script>
-	<script type='text/javascript' src='/static/js/submit_comment.js'></script>
+	<script type='text/javascript' src='/visitor/static/js/validate_input.js'></script>
+	<script type='text/javascript' src='/visitor/static/js/submit_comment.js'></script>
 {% endblock %}

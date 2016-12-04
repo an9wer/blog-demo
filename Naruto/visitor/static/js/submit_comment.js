@@ -10,7 +10,7 @@ function submit_comment() {
 					var name = data.name;
 					var timestamp = new Date(data.timestamp);
 					var body = data.body;
-					var tag = (getCount(document.getElementById('comment-list'), false) - 1) / 2 + 1;
+					var tag = getCount(document.getElementById('comment-wrapper'), false) + 1;
 					if (error) {
 						alert(error);
 					} else {
@@ -27,7 +27,7 @@ function submit_comment() {
 						div_body.appendChild(body_text);
 						div_id.appendChild(div_header);
 						div_id.appendChild(div_body);
-						document.getElementById('comment-list').appendChild(div_id);
+						document.getElementById('comment-wrapper').appendChild(div_id);
 						
 						// set testarea's content to null
 						document.getElementById('body').value = ''

@@ -9,17 +9,17 @@ def index():
 	page = request.args.get('page', 1, type=int)
 	pagination = Post.query.order_by(Post.publish_time.desc()).paginate(page=page, per_page=10, error_out=False)
 	posts = pagination.items
-	return render_template('visitor/index.html',
+	return render_template('index.html',
 						   page=page,
 						   pagination=pagination,
 						   posts=posts) 
 
 @visitor.route('/post/<int:post_id>', methods=['GET'])
-def show_post(post_id):
+def post(post_id):
 	form = CommentForm()
 	post = Post.query.filter_by(id=post_id).first()
 	comments = Comment.query.filter_by(post_id=post.id).order_by(Comment.timestamp.asc()).all()
-	return render_template('visitor/show_post.html',
+	return render_template('post.html',
 						   form=form,
 						   post=post,
 						   comments=comments)
@@ -82,7 +82,6 @@ def comment_submit_ajax():
 					comment = Comment(body=body, post_id=post_id, visitor=visitor)
 					db.session.add_all([visitor, comment])
 					db.session.commit()
-					print(comment.timestamp)
 					return jsonify(id=comment.id,
 								   name=name,
 								   timestamp=comment.timestamp,
