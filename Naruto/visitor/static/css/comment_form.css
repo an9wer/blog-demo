@@ -1,0 +1,75 @@
+/*--------------------*/
+/*--- comment-form ---*/
+/*--------------------*/
+
+.comment-form-wrapper p {
+	max-width: 20em;
+}
+
+.comment-form-wrapper label {
+	margin-left: .125em;
+	cursor: pointer;
+}
+
+.comment-form-wrapper label, .comment-form-wrapper input, .comment-form-wrapper textarea {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.comment-form-wrapper input, .comment-form-wrapper textarea {
+	font-size: 1em;
+	padding: .375em .3125em .3125em;
+	margin-top: .25em;
+	border: 1px solid #ccc;
+	border-radius: .25em;
+}
+
+.comment-form-wrapper input:focus, .comment-form-wrapper textarea:focus {
+	box-shadow: 0 0 .75em rgba(93, 162, 248, 0.5);
+	border-color: #5da2f8;
+}
+
+.comment-form-wrapper textarea {
+	width: 540px;
+	height: 200px;
+}
+
+.comment-form-wrapper button {
+	cursor: pointer;
+	border: 0;
+	padding: .5em 1em;
+	border-radius: .25em;
+	color: #eee;
+	background-color: #333;
+}
+
+.comment-form-wrapper button:hover {
+	color: #eee;
+	background-color: #2158a9;
+	background-image: linear-gradient(to bottom, #2063c0, #1d4d90);
+}
+
+.comment-form-wrapper span {
+	color: indianred;
+}
+
+/*--------------------*/
+/*--- comment-list ---*/
+/*--------------------*/
+
+.comment-list-wrapper {
+	margin-top: 50px;
+}
+
+.comment-list {
+	border-bottom: #999 solid 1px;
+	margin-bottom: 30px;
+}
+
+.comment-list .comment-header {
+	margin-bottom: 10px;
+}
+
+.comment-list .comment-body {
+	margin-bottom: 10px;
+}

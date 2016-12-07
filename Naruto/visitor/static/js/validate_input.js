@@ -1,31 +1,16 @@
-function validate_input(input_name) {
-	var request = new XMLHttpRequest();
-	if (request) {
-		request.onreadystatechange = function() {
-			if (request.readyState === 4) {
-				if (request.status === 200 || request.status === 304) {
-					// fetch the request data 
-					var data = JSON.parse(request.responseText);
-					var input_error = data[input_name + '_errors'][0];
-
-					if (input_error) {
-						// The input of url should be correct or none.
-						// If the input of url is none, it will not send error information.
-						if ( (input_value) || (input_name != 'url') ) {
-							document.getElementById(input_name + '_error').innerHTML = '* ' + input_error;
-						} else {
-							document.getElementById(input_name + '_error').innerHTML = '';
-						} 
-					} else {
-						document.getElementById(input_name + '_error').innerHTML = '';
-					}
-				}
-			}
+function validate_input(this_input) {
+	if (this_input.checkValidity() == false) {
+		if (this_input.id === 'name') {
+			document.getElementById('name_error').innerHTML = 'Please enter your name.'
 		}
-		request.open('POST', '/_validate_input_ajax');
-		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		var input_value = document.getElementById(input_name).value;
-		var postVar = input_name + '=' + input_value;
-		request.send(postVar);
+		if (this_input.id === 'email') {
+			document.getElementById('email_error').innerHTML = 'Please enter the correct email address.(e.g. john@example.com)'
+		}
+		if (this_input.id === 'url') {
+			document.getElementById('url_error').innerHTML = 'Please enter the correct Web address.(e.g. http://www.example.com)'
+		}
+	} else {
+		document.getElementById(this_input.id+'_error').innerHTML = ''
 	}
 }
+

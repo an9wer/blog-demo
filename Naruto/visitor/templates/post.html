@@ -1,53 +1,71 @@
 {% extends 'base.html' %}
 
+{% block css %}
+	{{ super() }}
+	<link rel='stylesheet' type='text/css' href='/visitor/static/css/post.css'>
+	<link rel='stylesheet' type='text/css' href='/visitor/static/css/comment_form.css'>
+{% endblock %}
+
 {% block content %}
 	<!-- post -->
-	<div class='post normal-post'>
+	<div class='post'>
 		<!-- post title -->
 		<h1 class='title'>{{ post.title }}</h1>
 		<!-- post publish time -->
-		<span class='date'>{{ post.publish_time }}</span>
+		<p class='date'>{{ post.publish_time }}</p>
 		<!-- post body -->
-		<div class='post-body'>
+		<div class='body font-kai'>
 			{{ post.body }}
 			<p class='eof'>· EOF ·</p>
 		</div>
 	</div>
+
 	<!-- comment form -->
-	<div>
-		<form method='post'>
-			{{ form.name.label }}<br>
-			{{ form.name(onblur='validate_input(this.name); return false;') }}
-				<span id='name_error'></span><br>
-			{{ form.email.label }}<br>
-			{{ form.email(onblur='validate_input(this.name); return false;') }}
-				<span id='email_error'></span><br>
-			{{ form.url.label }}<br>
-			{{ form.url(onblur='validate_input(this.name); return false;') }}
-				<span id='url_error'></span><br>
-			{{ form.body.label }}<br>
-			{{ form.body(onblur='validate_input(this.name); return false;') }}
-				<span id='body_error'></span><br>
-			{{ form.submit(value='Submit', onclick='submit_comment(); return false;') }}
-		</form>
-	</div>
+	<form method='post'>
+		<div class='comment-form-wrapper'>
+			<p>
+				<label for='name'>Name:</label>
+				<input id='name' class='font-hei' name='name' type='text' maxlength='60' required oninput='validate_input(this);'>
+				<span id='name_error'></span>
+			</p>
+			<p>
+				<label for='email'>Email Address:</label>
+				<input id='email' class='font-hei' name='email' type='email' maxlength='120' required oninput='validate_input(this);'>
+				<span id='email_error'></span>
+			</p>
+			<p>
+				<label for='url'>Web Address:</label>
+				<input id='url' class='font-hei' name='url' type='url' maxlength='120' oninput='validate_input(this);'>
+				<span id='url_error'></span>
+			</p>
+			<p>
+				<label for='body'>Comment</label>
+				<textarea id='body' class='font-kai' name='body'></textarea>
+			</p>
+			<button type='submit' onclick='submit_comment(); return false;'>Post comment</button>
+		</div>
+	</form>
+
 	<!-- comments list -->
-	<div class='comment-wrapper' id='comment-wrapper'>
+	<div class='comment-list-wrapper' id='comment-list-wrapper'>
 		{% set comment_tag = 1 %}
 		{% for comment in comments %}
-			<div id='comment-{{ comment.id }}'>
+			<div class='comment-list' id='comment-{{ comment.id }}'>
 				<div class='comment-header'>
 					{{ comment.visitor.name }}
 					 · #{{ comment_tag }} · 
 					{{ comment.timestamp }}
 				</div>
-				<div class='comment-body'>
+				<div class='comment-body font-kai'>
 					{{ comment.body }}
 				</div>
 			</div>
 		{% set comment_tag = comment_tag + 1 %}
 		{% endfor %}
 	</div>
+{% endblock %}
+
+{% block script %}
 	<script type='text/javascript' src='/visitor/static/js/validate_input.js'></script>
 	<script type='text/javascript' src='/visitor/static/js/submit_comment.js'></script>
 {% endblock %}

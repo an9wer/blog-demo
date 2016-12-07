@@ -10,15 +10,16 @@ function submit_comment() {
 					var name = data.name;
 					var timestamp = new Date(data.timestamp);
 					var body = data.body;
-					var tag = getCount(document.getElementById('comment-wrapper'), false) + 1;
+					var tag = getCount(document.getElementById('comment-list-wrapper'), false) + 1;
 					if (error) {
-						alert(error);
+						alert(error)
 					} else {
 						// create a new block to store comment
 						var div_id = document.createElement('div');
 						var div_header = document.createElement('div');
 						var div_body = document.createElement('div');
 						div_id.setAttribute('id', 'comment-'+id);
+						div_id.setAttribute('class', 'comment-list');
 						div_header.setAttribute('class', 'comment-header');
 						div_body.setAttribute('class', 'comment-body');
 						var header_text = document.createTextNode(name+' · '+'#'+tag+' · '+timestamp.toLocaleString());
@@ -27,10 +28,10 @@ function submit_comment() {
 						div_body.appendChild(body_text);
 						div_id.appendChild(div_header);
 						div_id.appendChild(div_body);
-						document.getElementById('comment-wrapper').appendChild(div_id);
+						document.getElementById('comment-list-wrapper').appendChild(div_id);
 						
 						// set testarea's content to null
-						document.getElementById('body').value = ''
+						document.getElementById('body').value = null
 						// scroll to the new comment
 						document.getElementById('comment-'+id).scrollIntoView(true);
 					}
