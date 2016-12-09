@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+	{{ super() }}
+	<link rel='stylesheet' type='text/css' href='/admin/static/css/posts.css'>
+{% endblock %}
+
+{% block content %}
+<table>
+	<tr>
+		<th scope='col'>id</th>
+		<th scope='col'>publish time</th>
+		<th scope='col'>title</th>
+	</tr>
+</table>
+{% endblock %}

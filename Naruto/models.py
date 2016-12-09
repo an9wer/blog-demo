@@ -1,5 +1,6 @@
 from . import db
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class Category(db.Model):
 	__tablename__ = 'category'
@@ -87,3 +88,19 @@ class Visitor(db.Model):
 			db.session.add(v)
 			db.session.commit()
 
+class Admin(db.Model):
+	__tablename__ = 'admin'
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(60))
+	password_hash = db.Column(db.String(120))
+
+	@property
+	def password(self):
+		raise AttributeError('password is not a readable attribute')
+
+	@password.setter
+	def password(self, password):
+		self.password_hash = generate_password_hash(password)
+
+	def verify_password(self, password):
+		return check_password_hash(self.password_hash, password)

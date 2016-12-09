@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='UTF-8'>
+	{% block css %}
+		<link rel='stylesheet' type='text/css' href='/admin/static/css/layout.css'>
+	{% endblock %}
+</head>
+
+<body>
+	<div class='navbar'>
+		<ul>
+			<li><a href=''>Dashboard</a></li>
+			<li><a href=''>Edit</a></li>
+			<li id='navbar-posts'><a href='/admin/posts'>Posts</a></li>
+			<li><a href=''>Comments</a></li>
+		<ul>
+	</div>
+
+	<div class='main'>
+		{% block content %}{% endblock %}
+	</div>
+</body>
+</html>
