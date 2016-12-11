@@ -17,6 +17,10 @@ def index():
 def post(post_id):
 	post = Post.query.filter_by(id=post_id).first()
 	comments = Comment.query.filter_by(post_id=post.id).order_by(Comment.timestamp.asc()).all()
+	'''the number of view should plus one'''
+	post.view_number += 1
+	db.session.add(post)
+	db.session.commit()
 	return render_template('post.html',
 						   post=post,
 						   comments=comments)
@@ -29,7 +33,7 @@ def comment_submit_ajax():
 	body = request.form.get('body', type=str)
 	post_id = request.form.get('post_id', type=int)
 
-	if name != '' and email != '' and body != '':
+	if name and email and body :
 		v = Visitor.query.filter_by(name=name).first()
 		'''The visitor name must be unique, but one email may refer to multiple visitor names.'''
 		if v:

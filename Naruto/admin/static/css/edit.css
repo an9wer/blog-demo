@@ -1,0 +1,30 @@
+/*--------------------*/
+/*----- navbar -------*/
+/*--------------------*/
+
+#navbar-edit {
+	background-color: rgba(20, 196, 148, 1);
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+/*--------------------*/
+/*----- editor -------*/
+/*--------------------*/
+
+.CodeMirror {
+	height: 350px;
+}
+
+/*--------------------*/
+/*------ form --------*/
+/*--------------------*/
+
+#title {
+	font-size: 1.5em;
+	width: 30%;
+	padding: 8px 20px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}

@@ -11,14 +11,15 @@
 	<div class='navbar'>
 		<ul>
 			<li><a href=''>Dashboard</a></li>
-			<li><a href=''>Edit</a></li>
+			<li id='navbar-edit'><a href='/admin/edit'>Edit</a></li>
 			<li id='navbar-posts'><a href='/admin/posts'>Posts</a></li>
-			<li><a href=''>Comments</a></li>
+			<li id='navbar-comments'><a href='/admin/comments'>Comments</a></li>
 		<ul>
 	</div>
 
 	<div class='main'>
 		{% block content %}{% endblock %}
 	</div>
+	{% block js %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+	{{ super() }}
+	<link rel='stylesheet' type='text/css' href='/admin/static/css/comments.css'>
+{% endblock %}
+
+{% block content %}
+<table>
+	<tr>
+		<th scope='col'>post id</th>
+		<th scope='col'>visitor</th>
+		<th scope='col'>email</th>
+		<th scope='col'>url</th>
+		<th scope='col'>timestamp</th>
+		<th scope='col'>comment body</th>
+	</tr>
+	{% for comment in comments %}
+		<tr>
+			<td>{{ comment.post.id }}</td>
+			<td>{{ comment.visitor.name }}</td>
+			<td>{{ comment.visitor.email }}</td>
+			<td>{{ comment.visitor.url }}</td>
+			<td>{{ comment.timestamp }}</td>
+			<td>{{ comment.body }}</td>
+		</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}

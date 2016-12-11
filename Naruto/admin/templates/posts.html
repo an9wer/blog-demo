@@ -7,10 +7,34 @@
 
 {% block content %}
 <table>
+	<colgroup>
+		<col class='id'>
+		<col class='category'>
+		<col class='publish-time'>
+		<col class='title'>
+		<col class='words'>
+		<col class='views'>
+		<col class='comments'>
+	</colgroup>
 	<tr>
 		<th scope='col'>id</th>
+		<th scope='col'>category</th>
 		<th scope='col'>publish time</th>
-		<th scope='col'>title</th>
+		<th scope='col'>title</th> 
+		<th scope='col'>words</th>
+		<th scope='col'>views</th>
+		<th scope='col'>comments</th>
 	</tr>
+	{% for post in posts %}
+		<tr>
+			<td>{{ post.id }}</td>
+			<td>{{ post.category.name }}</td>
+			<td>{{ post.publish_time }}</td>
+			<td>{{ post.title }}</td>
+			<td>{{ post.body|wordcount }}</td>
+			<td>{{ post.view_number }}</td>
+			<td>{{ post.comments|length }}</td>
+		</tr>
+	{% endfor %}
 </table>
 {% endblock %}

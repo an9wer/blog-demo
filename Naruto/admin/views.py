@@ -1,7 +1,7 @@
 import datetime
 from flask import render_template, session, redirect, request
 from . import admin
-from ..models import Admin
+from ..models import Admin, Post, Comment
 from Naruto.api.decorators import login_required
 
 @admin.route('/login', methods=['GET', 'POST'])
@@ -20,7 +20,33 @@ def login():
 def index():
 	return  render_template('dashboard.html')
 
+@admin.route('/edit')
+@login_required
+def edit():
+	return render_template('edit.html')
+
 @admin.route('/posts')
 @login_required
 def posts():
-	return render_template('posts.html')
+	sort = request.args.get('sort', default='id', type=str)
+	if sort == 'category':
+		posts = Post.query.order_by(Post.category).all()
+	elif sort == 'publish_time':
+		posts = Post.query.order_by(Post.publish_time).all()
+	elif sort == 'title':
+		posts = Post.query.order_by(Post.title).all()
+	elif sort == 'views':
+		posts = Post.query.order_by(post.view_number).all()
+	'''
+	elif sorts == 'comments':
+	'''	
+	posts = Post.query.all()
+	return render_template('posts.html',
+						   posts=posts)
+
+@admin.route('/comments')
+@login_required
+def comments():
+	comments = Comment.query.all()
+	return render_template('comments.html',
+						   comments=comments)
