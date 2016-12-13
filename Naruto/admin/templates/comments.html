@@ -8,21 +8,21 @@
 {% block content %}
 <table>
 	<tr>
-		<th scope='col'>post id</th>
-		<th scope='col'>visitor</th>
-		<th scope='col'>email</th>
-		<th scope='col'>url</th>
-		<th scope='col'>timestamp</th>
-		<th scope='col'>comment body</th>
+		<th scope='col'><a href='/admin/comments?sort=post+id'>post id</a></th>
+		<th scope='col'><a href='/admin/comments?sort=visitor'>visitor</a></th>
+		<th scope='col'><a href='/admin/comments?sort=email'>email</a></th>
+		<th scope='col'><a href='/admin/comments?sort=url'>url</a></th>
+		<th scope='col'><a href='/admin/comments?sort=timestamp'>timestamp</a></th>
+		<th scope='col'><a href='/admin/comments?sort=comment+body'>comment body</a></th>
 	</tr>
-	{% for comment in comments %}
+	{% for post_id, visitor, email, url, timestamp, comment_body in comments %}
 		<tr>
-			<td>{{ comment.post.id }}</td>
-			<td>{{ comment.visitor.name }}</td>
-			<td>{{ comment.visitor.email }}</td>
-			<td>{{ comment.visitor.url }}</td>
-			<td>{{ comment.timestamp }}</td>
-			<td>{{ comment.body }}</td>
+			<td>{{ post_id }}</td>
+			<td>{{ visitor }}</td>
+			<td>{{ email }}</td>
+			<td>{{ url }}</td>
+			<td>{{ timestamp }}</td>
+			<td>{{ comment_body }}</td>
 		</tr>
 	{% endfor %}
 </table>

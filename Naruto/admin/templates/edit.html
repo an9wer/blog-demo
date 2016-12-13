@@ -10,9 +10,26 @@
 {% block content %}
 	<form method='post'>
 		<div class='editor-form-wrapper'>
-			<input id='title' name='title' type='text' placeholder='title' >
+			<div class='normal-form-wrapper font-hei'>
+				<label id='title-label' for='title'>Title:</label>
+				<input id='title' class='font-hei' name='title' type='text'>
+				<label id='category-select-label' for='category-select'>Category:</label>
+				<select id='category-select' class='font-hei' name='category'>
+					{% for category in categories %}
+						<option value='{{ category.name }}'>{{ category.name }}</option>
+					{% endfor %}
+				</select>
+				<label id='category-input-label' for='category-input'>New:</label>
+				<input id='category-input' class='font-hei' name='new_category' type='text'>
+			<label id='abstract-label' for='abstract'>Abstract:</label>
+			<textarea id='abstract' class='font-hei' name='abstract'></textarea>
+			</div>
+			<!--
+			<label id='editor-label' for='editor'>Body:</label>
+			-->
 			<textarea id='editor' name='body'></textarea>
 		</div>
+		<button type='submit'>Submit</button>
 	</form>
 {% endblock %}
 

@@ -15,7 +15,7 @@
 		<p class='date'>{{ post.publish_time }}</p>
 		<!-- post body -->
 		<div class='body font-kai'>
-			{{ post.body }}
+			{{ post.body_html | safe }}
 			<p class='eof'>· EOF ·</p>
 		</div>
 	</div>

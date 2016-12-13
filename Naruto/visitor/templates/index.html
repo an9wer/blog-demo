@@ -13,7 +13,7 @@
 			<a href="{{ url_for('visitor.post', post_id=post.id) }}">{{ post.title }}</a>
 		</h2>
 		<span class='date font-kai'>{{ post.publish_time }}</span>
-		<div class='post-body abstract-content font-kai'>{{ post.body[:200] }}[...]</div>
+		<div class='post-body abstract-content font-kai'>{{ post.abstract }}</div>
 	</div>
 {% endfor %}
 

@@ -32,3 +32,14 @@ tr:first-of-type {
 tr:nth-of-type(even) {
 	background-color: #eee;
 }
+
+th a {
+	display: block;
+	color: rgba(20, 38, 100, 1);
+	text-decoration: none;
+}
+
+th a:hover {
+	color: rgba(20, 196, 148, 1);
+	transition: color linear .4s;
+}

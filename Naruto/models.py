@@ -22,7 +22,9 @@ class Post(db.Model):
 	__tablename__ = 'post'
 	id = db.Column(db.Integer, primary_key=True)
 	title = db.Column(db.String(120), unique=True)
+	abstract = db.Column(db.Text)
 	body = db.Column(db.Text)
+	body_html = db.Column(db.Text)
 	publish_time = db.Column(db.DateTime, default=datetime.utcnow)
 	view_number = db.Column(db.Integer, default=0)
 	category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
@@ -37,7 +39,8 @@ class Post(db.Model):
 		for i in range(count):
 			c = Category.query.offset(randint(0, Category.query.count()-1)).first()
 			p = Post(title = fake.sentence(),
-					 body = fake.text(randint(2000, 3000)),
+					 abstract = fake.text(randint(200, 300)),
+					 body_html = fake.text(randint(2000, 3000)),
 					 publish_time = fake.iso8601(),
 					 view_number = randint(1000, 2000),
 					 category = c)
