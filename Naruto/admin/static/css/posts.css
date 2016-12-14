@@ -43,3 +43,7 @@ th a:hover {
 	color: rgba(20, 196, 148, 1);
 	transition: color linear .4s;
 }
+
+form button {
+	vertical-align: 2px;
+}

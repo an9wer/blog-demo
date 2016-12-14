@@ -13,9 +13,9 @@
 /*--------------------*/
 
 table {
+	width: 300%;
 	border-collapse: collapse;
 	table-layout: auto;
-	width: 300%
 }
 
 th, td {
@@ -42,4 +42,9 @@ th a {
 th a:hover {
 	color: rgba(20, 196, 148, 1);
 	transition: color linear .4s;
+}
+
+form button {
+	vertical-align: 2px;
+	margin-right: 8px;
 }

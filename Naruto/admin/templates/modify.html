@@ -1,10 +1,12 @@
-{% extends 'layout.html' %}
+{% extends 'edit.html' %}
 
 {% block css %}
 	{{ super() }}
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-	<link rel='stylesheet' type='text/css' href='/admin/static/css/edit.css'>
-	<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+	<link rel='stylesheet' type='text/css' href='/admin/static/css/modify.css'>
+{% endblock %}
+
+{% block navbar %}
+	<li id='navbar-modify'><a href='/admin/modify'>Modify</a></li>
 {% endblock %}
 
 {% block content %}
@@ -12,7 +14,7 @@
 		<div class='editor-form-wrapper'>
 			<div class='normal-form-wrapper font-hei'>
 				<label id='title-label' for='title'>Title:</label>
-				<input id='title' class='font-hei' name='title' type='text'>
+				<input id='title' class='font-hei' name='title' type='text' value='{{ title }}'>
 				<label id='category-select-label' for='category-select'>Category:</label>
 				<select id='category-select' class='font-hei' name='category'>
 					{% for category in categories %}
@@ -20,18 +22,12 @@
 					{% endfor %}
 				</select>
 				<label id='category-input-label' for='category-input'>New:</label>
-				<input id='category-input' class='font-hei' name='new_category' type='text'>
+				<input id='category-input' class='font-hei' name='new_category' type='text' value='{{ category }}'>
 			<label id='abstract-label' for='abstract'>Abstract:</label>
-			<textarea id='abstract' class='font-hei' name='abstract'></textarea>
+			<textarea id='abstract' class='font-hei' name='abstract'>{{ abstract }}</textarea>
 			</div>
-			<textarea id='editor' name='body'></textarea>
+			<textarea id='editor' name='body'>{{ body }}</textarea>
 		</div>
 		<button type='submit'>Submit</button>
 	</form>
-{% endblock %}
-
-{% block js %}
-	<script>
-		var editor = new SimpleMDE({element: document.getElementById('editor')});
-	</script>
 {% endblock %}

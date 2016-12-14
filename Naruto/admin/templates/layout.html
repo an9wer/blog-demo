@@ -12,7 +12,9 @@
 	<div class='navbar'>
 		<ul>
 			<li><a href=''>Dashboard</a></li>
-			<li id='navbar-edit'><a href='/admin/edit'>Edit</a></li>
+			{% block navbar %}
+				<li id='navbar-edit'><a href='/admin/edit'>Edit</a></li>
+			{% endblock %}
 			<li id='navbar-posts'><a href='/admin/posts'>Posts</a></li>
 			<li id='navbar-comments'><a href='/admin/comments'>Comments</a></li>
 		<ul>

@@ -33,17 +33,48 @@ def edit():
 		abstract = request.form.get('abstract')
 		body = request.form.get('body')
 		body_html = mistune.markdown(body)
-		if new_category:
+		if Category.query.filter_by(name=new_category).count() == 0:
 			c = Category(name=new_category)
 		else:
 			c = Category.query.filter_by(name=category).first()
 		post = Post(title=title, abstract=abstract, body=body, body_html=body_html, category=c)
+		'''We don't need to db.sessoin.add(c), because the save-update cascade is on by default.'''
 		db.session.add(post)
 		db.session.commit()
 		return redirect('/')
 	return render_template('edit.html',
 						   categories=categories)
 
+@admin.route('/modify', methods=['GET', 'POST'])
+@login_required
+def modify():
+	categories = Category.query.all()
+	id = session.get('id')
+	title = session.get('title')
+	category = session.get('category')
+	abstract = session.get('abstract')
+	body = session.get('body')
+	if request.method == 'POST':
+		post = Post.query.filter_by(id=id).first()
+		post.title = request.form.get('title')
+		if Category.query.filter_by(name=request.form.get('new_category')).count() == 0:
+			#we need to db.session.add(...)
+			post.category = Category.query.filter_by(name=request.form.get('new_category')).first()
+		else:
+			post.category = Category.query.filter_by(name=request.form.get('category')).first()
+		post.abstract = request.form.get('abstract')
+		post.body = request.form.get('body')
+		post.body_html = mistune.markdown(request.form.get('body'))
+		db.session.add(post)
+		db.session.commit()
+		return redirect('/')
+	return render_template('modify.html',
+						   categories=categories,
+						   title=title,
+						   category=category,
+						   abstract=abstract,
+						   body=body)
+	
 @admin.route('/posts')
 @login_required
 def posts():
@@ -86,38 +117,80 @@ def posts():
 	return render_template('posts.html',
 						   posts=posts)
 
+@admin.route('/posts/modify', methods=['POST'])
+@login_required
+def posts_modify():
+	post_id = request.form.get('post_id')
+	post = Post.query.filter_by(id=post_id).first()
+	session['id'] = post.id
+	session['title'] = post.title
+	session['category'] = post.category.name
+	session['abstract'] = post.abstract
+	session['body'] = post.body
+	return redirect('/admin/modify')
+
+@admin.route('/posts/delete', methods=['POST'])
+@login_required
+def posts_delete():
+	post_id = request.form.get('post_id')
+	post = Post.query.filter_by(id=post_id).first()
+	db.session.delete(post)
+	db.session.commit()
+	return redirect('/admin/posts')
+
 @admin.route('/comments')
 @login_required
 def comments():
-	sort = request.args.get('sort', default='post id', type=str)
+	sort = request.args.get('sort', default='comment id', type=str)
 	comments = Comment.query.join(Post).join(Visitor)\
-							.with_entities(Post.id, Visitor.name, Visitor.email, Visitor.url, Comment.timestamp, Comment.body)\
-							.order_by(Post.id)\
+							.with_entities(Comment.id, Post.id, Visitor.name, Visitor.email,
+										   Visitor.url, Comment.timestamp, Comment.body)\
+							.order_by(Comment.id)\
 							.all()
+	if sort == 'post id':
+		comments = Comment.query.join(Post).join(Visitor)\
+								.with_entities(Comment.id, Post.id, Visitor.name, Visitor.email,
+											   Visitor.url, Comment.timestamp, Comment.body)\
+								.order_by(Post.id)\
+								.all()
 	if sort == 'visitor':
 		comments = Comment.query.join(Post).join(Visitor)\
-								.with_entities(Post.id, Visitor.name, Visitor.email, Visitor.url, Comment.timestamp, Comment.body)\
+								.with_entities(Comment.id, Post.id, Visitor.name, Visitor.email,
+											   Visitor.url, Comment.timestamp, Comment.body)\
 								.order_by(Visitor.name)\
 								.all()
 	elif sort == 'email':
 		comments = Comment.query.join(Post).join(Visitor)\
-								.with_entities(Post.id, Visitor.name, Visitor.email, Visitor.url, Comment.timestamp, Comment.body)\
+								.with_entities(Comment.id, Post.id, Visitor.name, Visitor.email,
+											   Visitor.url, Comment.timestamp, Comment.body)\
 								.order_by(Visitor.email)\
 								.all()
 	elif sort == 'url':
 		comments = Comment.query.join(Post).join(Visitor)\
-								.with_entities(Post.id, Visitor.name, Visitor.email, Visitor.url, Comment.timestamp, Comment.body)\
+								.with_entities(Comment.id, Post.id, Visitor.name, Visitor.email,
+											   Visitor.url, Comment.timestamp, Comment.body)\
 								.order_by(Visitor.url)\
 								.all()
 	elif sort == 'timestamp':
 		comments = Comment.query.join(Post).join(Visitor)\
-								.with_entities(Post.id, Visitor.name, Visitor.email, Visitor.url, Comment.timestamp, Comment.body)\
+								.with_entities(Comment.id, Post.id, Visitor.name, Visitor.email,
+											   Visitor.url, Comment.timestamp, Comment.body)\
 								.order_by(Comment.timestamp.desc())\
 								.all()
 	elif sort == 'comment body':
 		comments = Comment.query.join(Post).join(Visitor)\
-								.with_entities(Post.id, Visitor.name, Visitor.email, Visitor.url, Comment.timestamp, Comment.body)\
+								.with_entities(Comment.id, Post.id, Visitor.name, Visitor.email,
+											   Visitor.url, Comment.timestamp, Comment.body)\
 								.order_by(Comment.body)\
 								.all()
 	return render_template('comments.html',
 						   comments=comments)
+
+@admin.route('/comments/delete', methods=['POST'])
+@login_required
+def comments_delete():
+	comment_id = request.form.get('comment_id')
+	comment = Comment.query.filter_by(id=comment_id).first()
+	db.session.delete(comment)
+	db.session.commit()
+	return redirect('/admin/comments')

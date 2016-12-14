@@ -28,7 +28,7 @@ class Post(db.Model):
 	publish_time = db.Column(db.DateTime, default=datetime.utcnow)
 	view_number = db.Column(db.Integer, default=0)
 	category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
-	comments = db.relationship('Comment', backref='post')
+	comments = db.relationship('Comment', backref='post', cascade='all, delete-orphan')
 
 	'''generate fake data'''
 	@staticmethod
