@@ -29,14 +29,13 @@ def edit():
 	if request.method == 'POST':
 		title = request.form.get('title')
 		category = request.form.get('category')
-		new_category = request.form.get('new_category')
 		abstract = request.form.get('abstract')
 		body = request.form.get('body')
 		body_html = mistune.markdown(body)
-		if Category.query.filter_by(name=new_category).count() == 0:
-			c = Category(name=new_category)
-		else:
-			c = Category.query.filter_by(name=category).first()
+		'''If the category is not existed, we need to add it to the database.'''
+		c = Category.query.filter_by(name=category).first()
+		if not c:
+			c = Category(name=category)
 		post = Post(title=title, abstract=abstract, body=body, body_html=body_html, category=c)
 		'''We don't need to db.sessoin.add(c), because the save-update cascade is on by default.'''
 		db.session.add(post)
@@ -48,7 +47,6 @@ def edit():
 @admin.route('/modify', methods=['GET', 'POST'])
 @login_required
 def modify():
-	categories = Category.query.all()
 	id = session.get('id')
 	title = session.get('title')
 	category = session.get('category')
@@ -57,17 +55,20 @@ def modify():
 	if request.method == 'POST':
 		post = Post.query.filter_by(id=id).first()
 		post.title = request.form.get('title')
-		if Category.query.filter_by(name=request.form.get('new_category')).count() == 0:
-			#we need to db.session.add(...)
-			post.category = Category.query.filter_by(name=request.form.get('new_category')).first()
-		else:
-			post.category = Category.query.filter_by(name=request.form.get('category')).first()
 		post.abstract = request.form.get('abstract')
 		post.body = request.form.get('body')
 		post.body_html = mistune.markdown(request.form.get('body'))
+		'''If the category is not existed, we need to add it to the database.'''
+		c = Category.query.filter_by(name=request.form.get('category')).first()
+		if not c:
+			c = Category(name=post.category)
+			ad.session.add(c)
+		'''Here we can't use "post.category = c" '''
+		post.category_id = c.id
 		db.session.add(post)
 		db.session.commit()
 		return redirect('/')
+	categories = Category.query.all()
 	return render_template('modify.html',
 						   categories=categories,
 						   title=title,

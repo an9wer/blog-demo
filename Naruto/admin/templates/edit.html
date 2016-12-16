@@ -12,17 +12,18 @@
 		<div class='editor-form-wrapper'>
 			<div class='normal-form-wrapper font-hei'>
 				<label id='title-label' for='title'>Title:</label>
-				<input id='title' class='font-hei' name='title' type='text'>
-				<label id='category-select-label' for='category-select'>Category:</label>
-				<select id='category-select' class='font-hei' name='category'>
-					{% for category in categories %}
-						<option value='{{ category.name }}'>{{ category.name }}</option>
-					{% endfor %}
-				</select>
-				<label id='category-input-label' for='category-input'>New:</label>
-				<input id='category-input' class='font-hei' name='new_category' type='text'>
+				<input id='title' class='font-hei' name='title' type='text' required>
+				<label id='category-label'>
+					Category:
+					<ul>
+						{% for category in categories %}
+							<li onclick='document.getElementById("category").setAttribute("value", "{{ category.name }}")'>{{ category.name }}</li>
+						{% endfor %}
+					</ul>
+				</label>
+				<input id='category' class='font-hei' name='category' type='text' required>
 			<label id='abstract-label' for='abstract'>Abstract:</label>
-			<textarea id='abstract' class='font-hei' name='abstract'></textarea>
+			<textarea id='abstract' class='font-hei' name='abstract' required></textarea>
 			</div>
 			<textarea id='editor' name='body'></textarea>
 		</div>
