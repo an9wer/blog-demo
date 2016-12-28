@@ -1,7 +1,7 @@
 from flask import request, render_template, jsonify, redirect, url_for
 from . import visitor
 from .. import db
-from ..models import Post, Comment, Visitor
+from ..models import Post, Comment, Visitor, Category
 
 @visitor.route('/')
 def index():
@@ -24,6 +24,14 @@ def post(post_id):
 	return render_template('post.html',
 						   post=post,
 						   comments=comments)
+
+@visitor.route('/archive')
+def archive():
+	posts = Post.query.order_by(Post.publish_time.desc()).all()
+	categories = Category.query.all()
+	return render_template('archive.html',
+						   posts=posts,
+						   categories=categories)
 
 @visitor.route('/_submit_comment_ajax', methods=['POST'])
 def comment_submit_ajax():

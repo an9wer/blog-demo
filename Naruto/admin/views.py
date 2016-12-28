@@ -32,6 +32,7 @@ def edit():
 		abstract = request.form.get('abstract')
 		body = request.form.get('body')
 		body_html = mistune.markdown(body)
+		print(body_html)
 		'''If the category is not existed, we need to add it to the database.'''
 		c = Category.query.filter_by(name=category).first()
 		if not c:
@@ -58,6 +59,7 @@ def modify():
 		post.abstract = request.form.get('abstract')
 		post.body = request.form.get('body')
 		post.body_html = mistune.markdown(request.form.get('body'))
+		print(post.body_html)
 		'''If the category is not existed, we need to add it to the database.'''
 		c = Category.query.filter_by(name=request.form.get('category')).first()
 		if not c:

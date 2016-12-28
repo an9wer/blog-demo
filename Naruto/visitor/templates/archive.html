@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block css %}
+	{{ super() }}
+	<link rel='stylesheet' type='text/css' href='visitor/static/css/archive.css'>
+{% endblock %}
+
+{% block content %}
+	{% for category in categories %}
+	<div class='archive-list'>
+		<p>{{ category.name }}</p>
+		<ul>
+		{% for post in posts %}
+			{% if post.category_id == category.id %}
+			<li class='post-list'>
+				<a href='/post/{{ post.id }}'>{{ post.publish_time }} {{ post.title }}</a>
+			</li>
+			{% endif %}
+		{% endfor %}
+		</ul>
+	</div>
+	{% endfor %}
+{% endblock %}
