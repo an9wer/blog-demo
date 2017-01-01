@@ -3,9 +3,9 @@
 /*--------------------*/
 
 #navbar-comments {
-	background-color: rgba(20, 196, 148, 1);
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
+    background-color: rgba(20, 196, 148, 1);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 /*--------------------*/
@@ -13,38 +13,38 @@
 /*--------------------*/
 
 table {
-	width: 300%;
-	border-collapse: collapse;
-	table-layout: auto;
+    width: 300%;
+    border-collapse: collapse;
+    table-layout: auto;
 }
 
 th, td {
-	text-align: left;
-	line-height: 2;
-	padding: 0 0 0 10px;
-	border: 1.8px solid #fff;
+    text-align: left;
+    line-height: 2;
+    padding: 0 0 0 10px;
+    border: 1.8px solid #fff;
 }
 
 tr:first-of-type {
-	border-bottom: 3px solid #666;
+    border-bottom: 3px solid #666;
 }
 
 tr:nth-of-type(even) {
-	background-color: #eee;
+    background-color: #eee;
 }
 
 th a {
-	display: block;
-	color: rgba(20, 38, 100, 1);
-	text-decoration: none;
+    display: block;
+    color: rgba(20, 38, 100, 1);
+    text-decoration: none;
 }
 
 th a:hover {
-	color: rgba(20, 196, 148, 1);
-	transition: color linear .4s;
+    color: rgba(20, 196, 148, 1);
+    transition: color linear .4s;
 }
 
 form button {
-	vertical-align: 2px;
-	margin-right: 8px;
+    vertical-align: 2px;
+    margin-right: 8px;
 }

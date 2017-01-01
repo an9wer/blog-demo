@@ -1,35 +1,35 @@
 {% extends 'base.html' %}
 
 {% block css %}
-	{{ super() }}
-	<link rel='stylesheet' type='text/css' href='/visitor/static/css/index.css'>
+    {{ super() }}
+    <link rel='stylesheet' type='text/css' href='/visitor/static/css/index.css'>
 {% endblock %}
 
 {% block content %}
 <!-- post index -->
 {% for post in posts %}
-	<div class='post-list'>
-		<h2 class='title font-hei'>
-			<a href="{{ url_for('visitor.post', post_id=post.id) }}">{{ post.title }}</a>
-		</h2>
-		<span class='date font-kai'>{{ post.publish_time }}</span>
-		<div class='post-body abstract-content font-kai'>{{ post.abstract }}</div>
-	</div>
+    <div class='post-list'>
+        <h2 class='title font-hei'>
+            <a href="{{ url_for('visitor.post', post_id=post.id) }}">{{ post.title }}</a>
+        </h2>
+        <span class='date font-kai'>{{ moment(post.publish_time).format('LLL') }}</span>
+        <div class='post-body abstract-content font-kai'>{{ post.abstract }}</div>
+    </div>
 {% endfor %}
 
 <!-- pagination -->
 <div class='pager'>
-	{% if pagination.page == 1 -%}
-		<span>&laquo;Previous</span>
-	{%- else -%}
-		<a href="{{ url_for('visitor.index', page=page-1) }}">&laquo;Previous</a>
-	{%- endif %}
-	<em>-{{ pagination.page }}-</em>
-	{% if pagination.page == pagination.pages -%}
-		<span>Next&raquo;</span>
-	{%- else -%}
-		<a href="{{ url_for('visitor.index', page=page+1) }}">Next&raquo;</a>
-	{%- endif %}
+    {% if pagination.page == 1 -%}
+        <span>&laquo;Previous</span>
+    {%- else -%}
+        <a href="{{ url_for('visitor.index', page=page-1) }}">&laquo;Previous</a>
+    {%- endif %}
+    <em>-{{ pagination.page }}-</em>
+    {% if pagination.page == pagination.pages -%}
+        <span>Next&raquo;</span>
+    {%- else -%}
+        <a href="{{ url_for('visitor.index', page=page+1) }}">Next&raquo;</a>
+    {%- endif %}
 </div>
 
 {% endblock %}

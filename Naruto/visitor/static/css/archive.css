@@ -1,11 +1,15 @@
 .archive-list {
-	margin-top: 50px;
+    margin-top: 50px;
 }
 
 .archive-list p {
-	font-size: 1.3em;
+    font-size: 1.3em;
 }
 
 .post-list {
-	margin: 10px 0px;
+    margin: 10px 0px;
+}
+
+.post-list a span {
+    margin-right: 15px;
 }

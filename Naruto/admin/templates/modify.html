@@ -1,34 +1,34 @@
 {% extends 'edit.html' %}
 
 {% block css %}
-	{{ super() }}
-	<link rel='stylesheet' type='text/css' href='/admin/static/css/modify.css'>
+    {{ super() }}
+    <link rel='stylesheet' type='text/css' href='/admin/static/css/modify.css'>
 {% endblock %}
 
 {% block navbar %}
-	<li id='navbar-modify'><a href='/admin/modify'>Modify</a></li>
+    <li id='navbar-modify'><a href='/admin/modify'>Modify</a></li>
 {% endblock %}
 
 {% block content %}
-	<form method='post'>
-		<div class='editor-form-wrapper'>
-			<div class='normal-form-wrapper font-hei'>
-				<label id='title-label' for='title'>Title:</label>
-				<input id='title' class='font-hei' name='title' type='text' value='{{ title }}' required>
-				<label id='category-label'>
-					Category:
-					<ul>
-						{% for category in categories %}
-							<li onclick='document.getElementById("category").setAttribute("value", "{{ category.name }}")'>{{ category.name }}</li>
-						{% endfor %}
-					</ul>
-				</label>
-				<input id='category' class='font-hei' name='category' type='text' value='{{ category }}' required>
-			<label id='abstract-label' for='abstract'>Abstract:</label>
-			<textarea id='abstract' class='font-hei' name='abstract' required>{{ abstract }}</textarea>
-			</div>
-			<textarea id='editor' name='body'>{{ body }}</textarea>
-		</div>
-		<button type='submit'>Submit</button>
-	</form>
+    <form method='post'>
+        <div class='editor-form-wrapper'>
+            <div class='normal-form-wrapper font-hei'>
+                <label id='title-label' for='title'>Title:</label>
+                <input id='title' class='font-hei' name='title' type='text' value='{{ title }}' required>
+                <label id='category-label'>
+                    Category:
+                    <ul>
+                        {% for category in categories %}
+                            <li onclick='document.getElementById("category").setAttribute("value", "{{ category.name }}")'>{{ category.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </label>
+                <input id='category' class='font-hei' name='category' type='text' value='{{ category }}' required>
+            <label id='abstract-label' for='abstract'>Abstract:</label>
+            <textarea id='abstract' class='font-hei' name='abstract' required>{{ abstract }}</textarea>
+            </div>
+            <textarea id='editor' name='body'>{{ body }}</textarea>
+        </div>
+        <button type='submit'>Submit</button>
+    </form>
 {% endblock %}

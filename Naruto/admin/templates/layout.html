@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset='UTF-8'>
-	{% block css %}
-		<link rel='stylesheet' type='text/css' href='/admin/static/css/font.css'>
-		<link rel='stylesheet' type='text/css' href='/admin/static/css/layout.css'>
-	{% endblock %}
+    <meta charset='UTF-8'>
+    {% block css %}
+        <link rel='stylesheet' type='text/css' href='/admin/static/css/font.css'>
+        <link rel='stylesheet' type='text/css' href='/admin/static/css/layout.css'>
+    {% endblock %}
 </head>
 
 <body>
-	<div class='navbar'>
-		<ul>
-			<li><a href=''>Dashboard</a></li>
-			{% block navbar %}
-				<li id='navbar-edit'><a href='/admin/edit'>Edit</a></li>
-			{% endblock %}
-			<li id='navbar-posts'><a href='/admin/posts'>Posts</a></li>
-			<li id='navbar-comments'><a href='/admin/comments'>Comments</a></li>
-		<ul>
-	</div>
+    <div class='navbar font-hei'>
+        <ul>
+            {% block navbar %}
+                <li id='navbar-edit'><a href='/admin/edit'>Edit</a></li>
+            {% endblock %}
+            <li id='navbar-posts'><a href='/admin/posts'>Posts</a></li>
+            <li id='navbar-comments'><a href='/admin/comments'>Comments</a></li>
+        <ul>
+    </div>
 
-	<div class='main'>
-		{% block content %}{% endblock %}
-	</div>
-	{% block js %}{% endblock %}
+    <div class='main font-hei'>
+        {% block content %}{% endblock %}
+    </div>
+    {% block js %}{% endblock %}
 </body>
 </html>

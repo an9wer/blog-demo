@@ -3,22 +3,22 @@
 /*--------------------*/
 
 .post .title {
-	font-size: 2.5em;
-	line-height: 1.1;
+    font-size: 2.5em;
+    line-height: 1.1;
 }
 
 .post .date {
-	font-size: 1.25em;
-	text-align: right;
+    font-size: 1.125em;
+    text-align: right;
 }
 
 .post .body {
-	margin-top: 30px;
-	font-size: 1.125em;
+    margin-top: 30px;
+    font-size: 1.125em;
 }
 
 .post .body .eof {
-	text-align: center;
-	margin: 33px 0;
-	color: #bbb;
+    text-align: center;
+    margin: 33px 0;
+    color: #bbb;
 }

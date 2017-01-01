@@ -1,28 +1,28 @@
 @font-face {
-	font-family: Akashi;
-	src: url('/visitor/static/font/Akashi.woff') format('woff');
+    font-family: Akashi;
+    src: url('/visitor/static/font/Akashi.woff') format('woff');
 }
 
 body {
-	font-size: 18px;
-	color: #444;
-	background: #fdfdfd;
+    font-size: 18px;
+    color: #444;
+    background: #fdfdfd;
 }
 
 a {
-	color: black;
-	text-decoration: none;
-	transition: color linear .2s;
+    color: black;
+    text-decoration: none;
+    transition: color linear .2s;
 }
 
 a:hover {
-	color: indianred;
+    color: indianred;
 }
 
 .center-container {
-	width: 660px;
-	max-width: 90%;
-	margin: 0 auto;
+    width: 660px;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 /*--------------------*/
@@ -30,32 +30,32 @@ a:hover {
 /*--------------------*/
 
 .header-wrapper {
-	width: 100%;
-	border-bottom: solid 1px #eee;
+    width: 100%;
+    border-bottom: solid 1px #eee;
 }
 
 .header-wrapper .header {
-	padding: 40px 0;
-	overflow: hidden;
+    padding: 40px 0;
+    overflow: hidden;
 }
 
 .header-wrapper .logo {
-	width: 40%;
-	float: left;
-	font-family: Akashi;
-	font-size: 2em;
+    width: 40%;
+    float: left;
+    font-family: Akashi;
+    font-size: 2em;
 }
 
 .header-wrapper .links {
-	width: 60%;
-	text-align: right;
-	float: right;
-	margin-top: 10px;
+    width: 60%;
+    text-align: right;
+    float: right;
+    margin-top: 10px;
 }
 
 .header-wrapper .links a {
-	font-size: 1.125em;
-	margin: 0 0.8em;
+    font-size: 1.125em;
+    margin: 0 0.8em;
 }
 
 /*--------------------*/
@@ -63,11 +63,11 @@ a:hover {
 /*--------------------*/
 
 .footer-wrapper {
-	padding: 80px 0 10px;
+    padding: 80px 0 10px;
 }
 
 .footer-wrapper p {
-	margin-top: 5px;
-	text-align: center;
-	font-size: 0.75em;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 0.75em;
 }

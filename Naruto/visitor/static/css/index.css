@@ -3,28 +3,28 @@
 /*--------------------*/
 
 .content-wrapper {
-	margin-top: 50px;
+    margin-top: 50px;
 }
 
 .content-wrapper .post-list {
-	line-height: 1.6;
-	margin-bottom: 100px;
+    line-height: 1.6;
+    margin-bottom: 100px;
 }
 
 .content-wrapper .post-list .title {
-	font-size: 1.25em;
-	margin-bottom: 15px;
+    font-size: 1.25em;
+    margin-bottom: 15px;
 }
 
 .content-wrapper .post-list .date {
-	font-size: 1em;
-	color: #999;
+    font-size: 1em;
+    color: #999;
 }
 
 .content-wrapper .abstract-content {
-	margin-top: 10px;
-	line-height: 1.8;
-	color: #666;
+    margin-top: 10px;
+    line-height: 1.8;
+    color: #666;
 }
 
 /*--------------------*/
@@ -32,14 +32,14 @@
 /*--------------------*/
 
 .pager {
-	float: right;
+    float: right;
 }
 
 .pager a {
-	color: #333;
-	transition: all linear .4s;
+    color: #333;
+    transition: all linear .4s;
 }
 
 .pager a:hover {
-	color: #c9261E;
+    color: #c9261E;
 }
